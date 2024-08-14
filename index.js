@@ -4,6 +4,10 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+// env
+
+require('dotenv').config()
+
 // rotas
 const authRouter = require('./routers/authRoutes')
 const userRouter = require('./routers/userRoutes')
@@ -13,7 +17,7 @@ const partyRouter = require('./routers/paryRoutes')
 
 const verifyToken = require('./helpers/checkToken')
 
-const nameDb = 'partytimedb'
+const nameDb = process.env.NAMEDB
 const port = 7000
 
 const app = express()

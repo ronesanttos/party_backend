@@ -1,6 +1,10 @@
 const router = require('express').Router()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
+
+// env
+const Token = process.env.TOKEN
 
 const User = require('../models/user')
 
@@ -50,7 +54,7 @@ router.post("/register", async (req, res) => {
             name: newUser.name,
             id: newUser._id,
         },
-            "nossosecret"
+            Token
         )
 
         res.json({ error: null, msg: "Usuário cadastrado com succeso", token: token, userId: newUser._id })
@@ -87,7 +91,7 @@ router.post("/login", async (req, res) => {
             name: user.name,
             id: user._id,
         },
-            "nossosecret"
+            Token
         )
 
         res.json({ error: null, msg: "Você está autenticado!", token: token, userId: user._id })

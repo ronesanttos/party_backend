@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
+require('dotenv').config()
+
+const Token = process.env.TOKEN
 
 const getToken = async (token) => {
 
@@ -7,7 +10,7 @@ const getToken = async (token) => {
         return res.status(401).json({ error: "Acesso negado!" })
     }
 
-    const decoded = jwt.verify(token, "nossosecret")
+    const decoded = jwt.verify(token, Token)
 
     const userId = decoded.id
 

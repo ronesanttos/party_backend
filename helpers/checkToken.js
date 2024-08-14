@@ -1,4 +1,7 @@
 const jwt = require("jsonwebtoken")
+require('dotenv').config()
+
+const Token = process.env.TOKEN
 
 const checkToken = (req, res, next) => {
 
@@ -8,7 +11,7 @@ const checkToken = (req, res, next) => {
         return res.status(401).json({ error: "Acesso negado!" })
     }
     try {
-        const verified = jwt.verify(token, "nossosecret")
+        const verified = jwt.verify(token, Token)
         req.user = verified
         next()
 
