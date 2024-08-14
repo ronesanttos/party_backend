@@ -3,7 +3,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
-// env
 
 require('dotenv').config()
 
@@ -16,7 +15,6 @@ const partyRouter = require('./routers/paryRoutes')
 
 const verifyToken = require('./helpers/checkToken')
 
-const nameDb = process.env.NAMEDB
 const port = 7000
 
 const app = express()
@@ -32,7 +30,7 @@ app.use("/api/party", partyRouter)
 
 // conexao ao mongoDB
 
-mongoose.connect(`mongodb://localhost/${nameDb}`)
+mongoose.connect(process.env.MONGODB_URI)
 
 app.get("/", (req, res) => {
     res.json({ msg: "Rota teste" })
