@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const bcrypt = require('bcrypt')
+const bcryptJs = require("bcryptjs")
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
@@ -37,10 +37,10 @@ router.post("/register", async (req, res) => {
 
         //criar senha 
 
-        const salt = await bcrypt.genSalt(12)
+        const salt = await bcryptJs.genSalt(12)
         const reqPassword = req.body.password
 
-        const passwordHash = await bcrypt.hash(reqPassword, salt)
+        const passwordHash = await bcryptJs.hash(reqPassword, salt)
 
         const user = new User({
             name: name,
@@ -78,7 +78,7 @@ router.post("/login", async (req, res) => {
     }
 
     //checar se senha esta correta
-    const checkPassword = await bcrypt.compare(password, user.password)
+    const checkPassword = await bcryptJs.compare(password, user.password)
 
     if (!checkPassword) {
         return res.status(400).json({ error: "Senha incorreta!" })

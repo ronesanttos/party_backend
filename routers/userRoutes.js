@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const bcrypt = require('bcrypt')
+const bcryptJs = require('bcryptjs')
 
 const User = require('../models/user')
 
@@ -47,8 +47,8 @@ router.put("/", verifyToken, async (req, res) => {
     }
     // change password
     else if (password == confirmPass && password != null) {
-        const salt = await bcrypt.genSalt(12)
-        const passwordHash = await bcrypt.hash(password, salt)
+        const salt = await bcryptJs.genSalt(12)
+        const passwordHash = await bcryptJs.hash(password, salt)
 
         //add password
         updateData.password = passwordHash
