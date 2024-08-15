@@ -15,7 +15,6 @@ const partyRouter = require('./routers/paryRoutes')
 
 const verifyToken = require('./helpers/checkToken')
 
-const port = 7000
 
 const app = express()
 
@@ -32,17 +31,20 @@ app.use("/api/party", partyRouter)
 
 const connectDB = async () => {
     try {
-        mongoose.connect(process.env.MONGODB_URI)
-        await  
+        await mongoose.connect(process.env.MONGODB_URI)
     } catch (error) {
         console.log("Connection failed")
     }
 }
 
+connectDB()
+
+const PORT = process.env.PORT
+
 
 app.get("/", (req, res) => {
     res.json({ msg: "Rota teste" })
 })
-app.listen(port, () => {
-    console.log(`Backend rodando na porta ${port}`)
+app.listen(PORT, () => {
+    console.log(`Backend rodando na porta ${PORT}`)
 })
