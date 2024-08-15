@@ -37,7 +37,7 @@ const connectDB = async () => {
     }
 }
 
-connectDB()
+connectDB().catch(console.dir)
 
 const PORT = process.env.PORT
 
@@ -48,3 +48,5 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Backend rodando na porta ${PORT}`)
 })
+
+// fazer deploy no render
