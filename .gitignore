@@ -1,2 +1,3 @@
 # Ignore o arquivo relacionado ao MongoDb
 .env
+.md
