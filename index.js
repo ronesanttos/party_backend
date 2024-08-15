@@ -30,7 +30,15 @@ app.use("/api/party", partyRouter)
 
 // conexao ao mongoDB
 
-mongoose.connect(process.env.MONGODB_URI)
+const connectDB = async () => {
+    try {
+        mongoose.connect(process.env.MONGODB_URI)
+        await  
+    } catch (error) {
+        console.log("Connection failed")
+    }
+}
+
 
 app.get("/", (req, res) => {
     res.json({ msg: "Rota teste" })
