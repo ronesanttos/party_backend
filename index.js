@@ -9,7 +9,7 @@ require('dotenv').config()
 // rotas
 const authRouter = require('./routers/authRoutes')
 const userRouter = require('./routers/userRoutes')
-const partyRouter = require('./routers/paryRoutes')
+const partyRouter = require('./routers/partyRoutes')
 
 // middlewares
 
@@ -20,7 +20,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static("public"))
+app.use(express.static('public'))
 
 //rotas express
 app.use("/api/auth", authRouter)
