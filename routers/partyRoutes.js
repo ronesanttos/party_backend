@@ -163,12 +163,12 @@ router.delete("/", verifyToken, async (req, res) => {
 
 // atualizacao de festa
 
-router.put("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, res) => {
+router.patch("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, res) => {
     const title = req.body.title
     const description = req.body.description
     const partyDate = req.body.partyDate
     const partyId = req.body.id
-    const partyUserId = req.body.user_id
+    const partyUserId = req.body.userId //user_id
 
     let files = []
 
@@ -221,4 +221,4 @@ router.put("/", verifyToken, upload.fields([{ name: "photos" }]), async (req, re
 })
 module.exports = router
 
-//exporta para o github e glitch
+//exporta para o github e render
